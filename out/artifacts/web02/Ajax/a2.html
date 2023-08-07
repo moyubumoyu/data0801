@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/web02/js/jquery-1.12.4.js"></script>
+</head>
+<body>
+用户名:<input type="text" name="username" onblur="fun1(value)"> <span id="uname"></span>
+</body>
+<script>
+
+  function  fun1(value){
+
+    if(value.trim()!=""){
+      //填写了用户名
+      $.get("/web02/r2",{"username":value},function (d){
+
+        if(d==1){
+          $("#uname").html("<font color='red'>用户名已存在</font>")
+        }else{
+          $("#uname").html("<font color='green'>✔</font>")
+        }
+      })
+    }
+  }
+</script>
+</html>

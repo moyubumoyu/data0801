@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="/web02/js/jquery-1.12.4.js"></script>
+</head>
+<style>
+  table {
+    width: 70%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  button {
+    padding: 5px 10px;
+    margin-right: 5px;
+  }
+  #btn{
+    position: relative;
+    left: 300px;
+  }
+
+
+</style>
+<body>
+<center>
+  <h1>员工信息</h1>
+</center>
+
+<button id="btn" onclick="addEmp()">添加员工</button>
+
+<table align="center">
+  <tr>
+    <th>员工编号</th>
+    <th>姓名</th>
+    <th>薪资</th>
+    <th>入职日期</th>
+    <th>所属部门编号</th>
+    <th>操作</th>
+  </tr>
+
+</table>
+</body>
+<script>
+
+    $.get("/web02/emp?method=findAll",{},function (list){
+      /*参数1 要遍历的集合   参数2回调函数   index 索引 emp 从集合中获取到每一个json对象*/
+      $.each(list,function (index,emp){
+        /*向在父元素内部的末尾添加子元素*/
+        $("table").append("<tr><td>"+emp.employeeId+"</td><td>"+emp.name+"</td><td>"+emp.salary+"</td><td>"+emp.hireDate+"</td><td>"+emp.departmentId+"</td><td><button >修改</button>&nbsp;&nbsp;&nbsp;<button onclick='deleteEmployee("+emp.employeeId+")'>删除</button></td></tr>")      })
+    },"json")
+
+
+  function editEmployee(employeeId) {
+    location.href="/web02/emp?method=findEmp&eid="+employeeId
+  }
+  function deleteEmployee(employeeId) {
+    alert ("删除");
+
+    $.get("/web02/emp?method=deleteEmp"+employeeId,function (d){
+      if(d===1)
+        alert ("删除成功");
+      else
+        alert("删除失败");
+    })
+  }
+  function addEmp() {
+    location.href="/web02/emp/emp_add.html"
+  }
+</script>
+</html>

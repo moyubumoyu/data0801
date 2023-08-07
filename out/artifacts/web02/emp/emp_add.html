@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="/web02/js/jquery-1.12.4.js"></script>
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 30px;
+  }
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  .cancel-button {
+    background-color: #ccc;
+    margin-right: 10px;
+  }
+</style>
+<body>
+<h1>员工信息</h1>
+<form>
+  <label for="employeeId">员工编号:</label>
+  <input type="text" id="employeeId" name="employeeId">
+  <label for="name">姓名:</label>
+  <input type="text" id="name" name="name">
+  <label for="salary">薪资:</label>
+  <input type="text" id="salary" name="salary">
+  <label for="hireDate">入职日期:</label>
+  <input type="text" id="hireDate" name="hireDate">
+  <label for="departmentId">所属部门编号:</label>
+  <input type="text" id="departmentId" name="departmentId">
+  <button type="submit" onclick="add()">保存</button>
+  <button class="cancel-button" onclick="cancelEdit()">取消</button>
+</form>
+</body>
+<script>
+  function add(){
+    let employeeId=$("#employeeId").val();
+    let name=$("#name").val();
+    let salary=$("#salary").val();
+    let hireDate=$("#hireDate").val();
+    let departmentId=$("#departmentId").val();
+    $.ajax({
+      url:'/web02/emp?method=addEmp',
+      data:{"employeeId":employeeId,"name":name,"salary":salary,"hireDate":hireDate,"departmentId":departmentId},
+      type:"post",
+
+      success:function (d) {
+        if(d==1)
+          alert ("添加成功");
+        else
+          alert("添加失败");
+      }
+
+    })
+  }
+</script>
+</html>

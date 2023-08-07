@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="web02:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/web02</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="web02" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/lib/standard.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/mysql-connector-java-8.0.21.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/jstl.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/druid-1.0.9.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/commons-dbutils-1.4.jar" />
+          <element id="library" level="application" name="lib" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/jackson-annotations-2.7.9.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/jackson-core-2.7.9.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/jackson-databind-2.7.9.jar" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="web02/web/Web" />
+    </root>
+  </artifact>
+</component>

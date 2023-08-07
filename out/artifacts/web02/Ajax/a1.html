@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/web02/js/jquery-1.12.4.js"></script>
+</head>
+<body>
+<div id="d1" style="width: 200px;height:200px;border: 1px solid">
+  小王
+</div>
+
+<button onclick="fun1()">改变内容</button>
+</body>
+<script>
+    /*
+    *  规范
+    *    1、属性不要求顺序
+    *    2、属性和属性值是键值对形式
+    *    3、每一个属性之间用,隔开 最后一个属性不加,
+    *    4、data中是携带的数据 如果不需要携带数据后台可以省略 携带{"字符串":obj,"字符串":obj}
+    * */
+    function fun1(){
+        var content = $("div").text()
+        //发送ajax
+        $.ajax({
+            //请求地址
+            url:'/web02/r1',
+            //请求类型 get/post
+            type:"post",
+            //携带的数据  {"字符串":obj,"字符串":obj} 如果没有可以省略
+            //data:{"content":$("#d1").text()},
+            //是否异步 默认true 异步  false同步 属性可以省略
+            //async:true,
+            //d:response对象返回的内容  success:成功的回调
+            data:{"content":content},
+            success:function (d){
+                $("#d1").html(d)
+            }
+            //返回的内容类型 默认值text html都表示文本  javaScript xml json(数据格式)
+            //dataType:"text"
+        })
+    }
+
+</script>
+</html>
